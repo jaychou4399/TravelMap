@@ -127,7 +127,7 @@ export default function CityDetail() {
                 style={{ height: '100%', width: '100%' }}
               >
                 <TileLayer
-                  url={dark ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png' : 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'}
+                  url={dark ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png' : 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'}
                 />
                 <CircleMarker
                   center={[city.lat, city.lng]}

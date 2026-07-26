@@ -93,10 +93,16 @@ export default function WorldMap({ mode, height = 560, chinaOnly = false }: Prop
     if (!playing) setVisibleSegs(routeLatLngs.length);
   }, [playing, routeLatLngs.length]);
 
+  // 瓦片源：CartoCDN 在国内访问不稳定（常 ERR_ABORTED），
+  // 改用 OSM 标准瓦片 + 子域交替，国内可正常访问。
+  // dark 用 CartoDB dark_all（子域 a/b/c/d 仍是 cartocdn，但 dark 主题别处无可替代，
+  // 失败时浏览器自动降级到下一子域，影响相对较小）。
   const tileUrl = dark
     ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-    : 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
-  const attribution = '&copy; OpenStreetMap &copy; CARTO';
+    : 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+  const attribution = dark
+    ? '&copy; OpenStreetMap &copy; CARTO'
+    : '&copy; OpenStreetMap contributors';
 
   const center: [number, number] = chinaOnly ? [35, 105] : [30, 20];
   // 所有可见点（用于 FitBounds）
