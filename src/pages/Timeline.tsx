@@ -6,6 +6,7 @@ import { cityMap } from '@/data/cities';
 import {
   IconTimeline, IconCalendar, IconStar, IconLocation, IconCompass,
 } from '@/components/Icons';
+import { getThumbUrl } from '@/utils/image';
 import type { Trip } from '@/types';
 
 export default function Timeline() {
@@ -100,7 +101,7 @@ function TimelineEntry({ trip, index }: { trip: Trip; index: number }) {
           {/* Cover thumbnail */}
           <div className="relative sm:w-48 h-40 sm:h-auto shrink-0 overflow-hidden">
             <img
-              src={trip.cover}
+              src={getThumbUrl(trip.cover, 400, 300)}
               alt={city?.name ?? ''}
               loading="lazy"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"

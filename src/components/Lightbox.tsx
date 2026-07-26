@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Photo } from '@/types';
 import { IconClose, IconArrowLeft, IconArrowRight, IconPlay } from './Icons';
+import { getThumbUrl } from '@/utils/image';
 
 interface Props {
   photos: Photo[];
@@ -168,7 +169,7 @@ export default function Lightbox({ photos, index, onClose, onIndexChange }: Prop
               onClick={(e) => { e.stopPropagation(); onIndexChange(i); }}
               className={`shrink-0 w-10 h-10 rounded-lg overflow-hidden ring-2 transition-all ${i === index ? 'ring-white scale-110' : 'ring-transparent opacity-50 hover:opacity-80'}`}
             >
-              <img src={p.url} alt="" className="w-full h-full object-cover" loading="lazy" draggable={false} />
+              <img src={getThumbUrl(p.url, 80, 80)} alt="" className="w-full h-full object-cover" loading="lazy" draggable={false} />
             </button>
           ))}
         </div>

@@ -11,6 +11,7 @@ import {
   IconMap, IconGlobe, IconTrain,
 } from '@/components/Icons';
 import { exportPNG, exportPDF, nativeShare } from '@/utils/share';
+import { getThumbUrl } from '@/utils/image';
 import type { Trip, Photo } from '@/types';
 
 const MONTHS = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
@@ -209,7 +210,7 @@ export default function Review() {
               {/* Favorite city */}
               {summary.favoriteTrip && summary.favoriteCity && (
                 <motion.div variants={itemV} className="relative rounded-2xl overflow-hidden min-h-[200px]">
-                  <img src={summary.favoriteTrip.cover} alt={summary.favoriteCity.name} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+                  <img src={getThumbUrl(summary.favoriteTrip.cover, 800)} alt={summary.favoriteCity.name} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                   <div className="absolute inset-0 flex flex-col justify-end p-5 text-white">
                     <span className="text-[10px] uppercase tracking-wider opacity-70 mb-1 flex items-center gap-1">
@@ -236,7 +237,7 @@ export default function Review() {
                 <div className="grid grid-cols-4 sm:grid-cols-8 gap-1.5">
                   {summary.topPhotos.map((p) => (
                     <div key={p.id} className="relative aspect-square rounded-xl overflow-hidden ring-1 ring-white/20 dark:ring-white/10 group">
-                      <img src={p.url} alt={p.caption} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                      <img src={getThumbUrl(p.url, 200, 200)} alt={p.caption} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
                     </div>
                   ))}

@@ -13,6 +13,7 @@ import {
   IconArrowLeft, IconCalendar, IconWallet, IconPlane, IconTrain, IconLocation,
   IconStar, IconEdit, IconHeart, IconBookmark, IconPhoto, IconUpload, IconTrash,
 } from '@/components/Icons';
+import { getThumbUrl } from '@/utils/image';
 
 const TRANSPORT_LABEL: Record<Transport, string> = {
   plane: '飞机', train: '火车', car: '自驾', bus: '大巴', ship: '邮轮', bike: '骑行', walk: '步行', other: '其他',
@@ -194,13 +195,14 @@ export default function CityDetail() {
                         <div
                           key={p.id}
                           className="relative aspect-square rounded-xl overflow-hidden group"
+                          style={{ contentVisibility: 'auto', containIntrinsicSize: '200px' }}
                         >
                           <button
                             onClick={() => setLightboxIdx(allPhotos.findIndex((x) => x.id === p.id))}
                             className="w-full h-full block"
                           >
                             <img
-                              src={p.url}
+                              src={getThumbUrl(p.url, 400, 400)}
                               alt={p.caption}
                               loading="lazy"
                               decoding="async"

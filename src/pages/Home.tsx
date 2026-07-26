@@ -7,6 +7,7 @@ import {
   IconArrowRight, IconMap, IconCompass, IconPhoto, IconPlane, IconTrain,
   IconCalendar, IconLocation, IconStar,
 } from '@/components/Icons';
+import { getThumbUrl } from '@/utils/image';
 
 const statsConfig = (s: ReturnType<typeof computeStats>) => [
   { label: '已去城市', value: s.cityCount, suffix: '', icon: IconLocation, color: 'from-sky-400 to-blue-500' },
@@ -151,7 +152,7 @@ export default function Home() {
                   <div className="glass glass-sheen rounded-glass overflow-hidden transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-glass">
                     <div className="relative h-44 overflow-hidden">
                       <img
-                        src={t.cover}
+                        src={getThumbUrl(t.cover, 600, 400)}
                         alt={city?.name}
                         loading="lazy"
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
